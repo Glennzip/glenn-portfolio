@@ -102,14 +102,31 @@ function initFilter() {
 
 document.addEventListener('DOMContentLoaded', initFilter);
 
-/* ── Contact Form ──────────────────────────────────────────── */
+/* ── Contact Form — EmailJS Real Send ──────────────────────── */
+
+/* ─────────────────────────────────────────────────────────────
+   EMAILJS SETUP — fill in your 3 IDs below.
+   See: Portfolio/EMAILJS_SETUP.md for step-by-step guide.
+   ───────────────────────────────────────────────────────────── */
+const EMAILJS_CONFIG = {
+  publicKey:   'HWTIPZSDJS2EEaa_2',
+  serviceId:   'service_69dzp69',
+  templateId:  'template_0tvxb5b',
+};
+
 function initContactForm() {
-  const form = document.getElementById('contactForm');
-  const note = document.getElementById('formNote');
+  const form      = document.getElementById('contactForm');
+  const note      = document.getElementById('formNote');
+  const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
 
-  if (!form) return;
+  if (!form || !submitBtn) return;
 
-  form.addEventListener('submit', (e) => {
+  /* Initialise EmailJS SDK with your public key */
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
+  }
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const name    = form.name.value.trim();
@@ -117,41 +134,90 @@ function initContactForm() {
     const subject = form.subject.value.trim();
     const message = form.message.value.trim();
 
+    /* ── Client-side validation ──────────────────────────── */
     if (!name || !email || !subject || !message) {
-      showNote('⚠️ Please fill in all fields.', '#f87171');
+      showNote('⚠️ Please fill in all fields.', 'var(--red, #f87171)');
+      shakeForm(form);
       return;
     }
-
     if (!isValidEmail(email)) {
-      showNote('⚠️ Please enter a valid email address.', '#f87171');
+      showNote('⚠️ Please enter a valid email address.', 'var(--red, #f87171)');
+      shakeForm(form);
       return;
     }
 
-    // Simulate send (replace with actual EmailJS / fetch call)
-    const submitBtn = form.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
+    /* ── Check IDs are configured ────────────────────────── */
+    if (
+      EMAILJS_CONFIG.publicKey  === 'YOUR_PUBLIC_KEY'  ||
+      EMAILJS_CONFIG.serviceId  === 'YOUR_SERVICE_ID'  ||
+      EMAILJS_CONFIG.templateId === 'YOUR_TEMPLATE_ID'
+    ) {
+      showNote('⚠️ EmailJS not configured yet. See EMAILJS_SETUP.md.', 'var(--red, #f87171)');
+      return;
+    }
 
-    setTimeout(() => {
+    /* ── Loading state ───────────────────────────────────── */
+    setLoading(true);
+
+    try {
+      /* ── Send via EmailJS ────────────────────────────────
+         These keys must match your EmailJS template variables:
+         {{from_name}}, {{from_email}}, {{subject}}, {{message}}
+      */
+      await emailjs.send(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
+        {
+          from_name:  name,
+          from_email: email,
+          subject:    subject,
+          message:    message,
+          reply_to:   email,
+          to_name:    'Glenn',
+        }
+      );
+
+      /* ── Success ─────────────────────────────────────────── */
       showNote('✅ Message sent! I\'ll get back to you soon.', 'var(--green)');
       form.reset();
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="bx bx-send"></i> Send Message';
-    }, 1200);
+
+    } catch (err) {
+      /* ── Error ───────────────────────────────────────────── */
+      console.error('EmailJS error:', err);
+      const errMsg = err?.text || err?.message || 'Unknown error';
+      showNote(`❌ Failed to send. (${errMsg}) — try emailing me directly.`, 'var(--red, #f87171)');
+    } finally {
+      setLoading(false);
+    }
   });
+
+  /* ── Helpers ─────────────────────────────────────────────── */
+  function setLoading(on) {
+    submitBtn.disabled = on;
+    submitBtn.innerHTML = on
+      ? `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="spin-loader"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending…`
+      : `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message`;
+  }
 
   function showNote(msg, color) {
     note.textContent = msg;
     note.style.color = color;
-    setTimeout(() => { note.textContent = ''; }, 5000);
+    clearTimeout(note._timer);
+    note._timer = setTimeout(() => { note.textContent = ''; }, 6000);
   }
 
   function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
+
+  function shakeForm(el) {
+    el.classList.add('form-shake');
+    el.addEventListener('animationend', () => el.classList.remove('form-shake'), { once: true });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', initContactForm);
+
 
 /* ── Footer Year ───────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
