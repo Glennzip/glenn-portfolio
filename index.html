@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glenn Beriño D. — Portfolio</title>
+  <!-- Anti-flash: apply saved theme before first paint -->
+  <script>
+    (function(){
+      var t = localStorage.getItem('portfolio-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- Lucide Icons (crisp stroke icons) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ NAVBAR ═══ -->
+  <header id="navbar">
+    <nav class="nav-container">
+      <a href="#home" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>Glenn<span class="logo-dot">.</span>dev<span class="logo-bracket">/&gt;</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home"     class="nav-link active" data-section="home">Home</a></li>
+        <li><a href="#profile"  class="nav-link"        data-section="profile">Profile</a></li>
+        <li><a href="#projects" class="nav-link"        data-section="projects">Projects</a></li>
+        <li><a href="#contact"  class="nav-link"        data-section="contact">Contact</a></li>
+      </ul>
+
+      <!-- Theme Toggle Button -->
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle theme">
+        <!-- Moon icon (shown in dark mode) -->
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <!-- Sun icon (shown in light mode) -->
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1"  x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22"   x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1"  y1="12" x2="3"  y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78"  x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile nav overlay -->
+  <div class="nav-drawer-overlay" id="navOverlay"></div>
+
+  <main>
+
+    <!-- ═══════════════════════════════════════════ HOME ═══ -->
+    <section id="home" class="section hero-section">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-content">
+        <p class="hero-greeting reveal">Hello, I'm</p>
+        <h1 class="hero-name reveal">Glenn Beriño D.</h1>
+        <div class="hero-roles reveal">
+          <span class="role-prefix">I build </span>
+          <span class="typed-text" id="typedText"></span>
+          <span class="cursor">|</span>
+        </div>
+        <p class="hero-tagline reveal">
+          Graduating BSIT student specializing in <strong>Web Development</strong> &amp; <strong>Game Development</strong>.
+          Creating functional, user-friendly digital experiences across web, mobile, and games.
+        </p>
+        <div class="hero-badges reveal">
+          <span class="badge badge-web">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Web Dev
+          </span>
+          <span class="badge badge-game">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M7 12h.01"/><path d="M17 10v4"/><path d="M15 12h4"/></svg>
+            Game Dev
+          </span>
+          <span class="badge badge-ui">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            UI/UX
+          </span>
+          <span class="badge badge-mobile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            Mobile
+          </span>
+          <span class="badge badge-ai">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2zM9 14a1 1 0 1 0 2 0 1 1 0 0 0-2 0zm4 0a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/></svg>
+            AI-Assisted
+          </span>
+        </div>
+        <div class="hero-cta reveal">
+          <a href="#projects" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/><path d="M12 17v4"/></svg>
+            View My Work
+          </a>
+          <a href="#contact" class="btn btn-outline">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Let's Talk
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual reveal">
+        <div class="code-card">
+          <div class="code-card-header">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="code-card-title">glenn.js</span>
+          </div>
+          <pre class="code-body"><code><span class="c-keyword">const</span> <span class="c-var">developer</span> = {
+  <span class="c-prop">name</span>: <span class="c-str">"Glenn Beriño D."</span>,
+  <span class="c-prop">degree</span>: <span class="c-str">"BSIT — Graduating"</span>,
+  <span class="c-prop">specialization</span>: [
+    <span class="c-str">"Web Development"</span>,
+    <span class="c-str">"Game Development"</span>,
+  ],
+  <span class="c-prop">stack</span>: [
+    <span class="c-str">"HTML"</span>, <span class="c-str">"CSS"</span>, <span class="c-str">"JS"</span>, <span class="c-str">"PHP"</span>,
+    <span class="c-str">"C"</span>, <span class="c-str">"C++"</span>, <span class="c-str">"C#"</span>, <span class="c-str">"Swift"</span>,
+    <span class="c-str">"Kotlin"</span>, <span class="c-str">"Java"</span>, <span class="c-str">"MySQL"</span>,
+  ],
+  <span class="c-prop">available</span>: <span class="c-keyword">true</span>,
+};</code></pre>
+        </div>
+      </div>
+      <a href="#profile" class="scroll-down" aria-label="Scroll down">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </a>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ PROFILE ═══ -->
+    <section id="profile" class="section profile-section">
+      <div class="section-inner">
+        <div class="section-header reveal">
+          <h2 class="section-title">Profile</h2>
+        </div>
+
+        <!-- About -->
+        <div class="profile-grid">
+          <div class="profile-about reveal">
+
+            <!-- ─── PROFILE PHOTO ──────────────────────────────── -->
+            <div class="profile-avatar">
+              <div class="avatar-ring">
+                <!--
+                  TO ADD YOUR PHOTO:
+                  1. Copy your photo into:  assets/images/profile.jpg
+                  2. The image will automatically appear here.
+                  The "GB" initials show as a fallback if no photo is found.
+                -->
+                <div class="avatar-photo-wrap">
+                  <img
+                    src="assets/images/profile.jpg"
+                    alt="Glenn Beriño D."
+                    class="avatar-photo"
+                    id="profilePhoto"
+                    onerror="this.style.display='none'; document.getElementById('profileInitials').style.display='flex';"
+                  />
+                  <div class="profile-initials" id="profileInitials">GB</div>
+                </div>
+              </div>
+              <div class="avatar-status">
+                <span class="status-dot"></span> Open to Work
+              </div>
+            </div>
+            <!-- ─── END PROFILE PHOTO ──────────────────────────── -->
+
+            <div class="profile-info">
+              <h3>About Me</h3>
+              <p>
+                I'm a graduating <strong>Bachelor of Science in Information Technology</strong> student
+                specializing in Web Development and Game Development. I enjoy turning ideas into functional
+                digital products — from websites, e-commerce platforms, and reservation systems to mobile
+                applications and RPG games.
+              </p>
+              <p>
+                My skills combine programming, UI/UX design, database development, game development, asset
+                creation, and AI/LLM-assisted development. I value communication and reliability when working
+                with clients — providing regular updates and delivering practical solutions.
+              </p>
+              <div class="profile-meta">
+                <div class="meta-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                  BSIT — Graduating
+                </div>
+                <div class="meta-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Philippines
+                </div>
+                <div class="meta-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                  Web &amp; Game Developer
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="skills-section reveal">
+          <h3 class="skills-title">Skills &amp; Expertise</h3>
+          <div class="skills-grid">
+
+            <div class="skill-card reveal">
+              <div class="skill-icon-wrap skill-icon-web">
+                <!-- Globe / Web icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <h4>Web Development</h4>
+              <p>Full-stack web applications, e-commerce platforms, reservation systems, admin dashboards, and CRUD systems.</p>
+              <div class="skill-tags">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                <span>PHP</span><span>MySQL</span>
+              </div>
+            </div>
+
+            <div class="skill-card reveal">
+              <div class="skill-icon-wrap skill-icon-game">
+                <!-- Gamepad icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M7 12h.01"/><path d="M17 10v4"/><path d="M15 12h4"/></svg>
+              </div>
+              <h4>Game Development</h4>
+              <p>RPG games, quest systems, game UI, custom plugins, mobile controls, and Android game deployment.</p>
+              <div class="skill-tags">
+                <span>RPG Maker MV</span><span>RPG Maker MZ</span>
+                <span>JavaScript</span><span>Android</span>
+              </div>
+            </div>
+
+            <div class="skill-card reveal">
+              <div class="skill-icon-wrap skill-icon-mobile">
+                <!-- Smartphone icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              </div>
+              <h4>Mobile Development</h4>
+              <p>Android and iOS applications with Firebase integration, mobile UI/UX, and API connections.</p>
+              <div class="skill-tags">
+                <span>Kotlin</span><span>Java</span>
+                <span>Swift</span><span>C#</span>
+                <span>Firebase</span><span>Jetpack Compose</span>
+              </div>
+            </div>
+
+            <div class="skill-card reveal">
+              <div class="skill-icon-wrap skill-icon-ui">
+                <!-- Pen tool / design icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="m2 2 7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+              </div>
+              <h4>UI/UX Design</h4>
+              <p>Clean, responsive interfaces for web, mobile, and games. Focused on usability and visual consistency.</p>
+              <div class="skill-tags">
+                <span>Figma</span><span>Responsive Design</span>
+                <span>Dashboard UI</span>
+              </div>
+            </div>
+
+            <div class="skill-card reveal">
+              <div class="skill-icon-wrap skill-icon-db">
+                <!-- Database icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+              </div>
+              <h4>Database &amp; Backend</h4>
+              <p>Database-driven applications with authentication, roles, CRUD operations, and real-time data.</p>
+              <div class="skill-tags">
+                <span>MySQL</span><span>Firebase</span>
+                <span>Firestore</span><span>PHP</span>
+              </div>
+            </div>
+
+            <div class="skill-card reveal">
+              <div class="skill-icon-wrap skill-icon-ai">
+                <!-- CPU / AI icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M9 2v2M2 9h2M2 15h2M22 9h-2M22 15h-2M15 22v-2M9 22v-2"/></svg>
+              </div>
+              <h4>AI/LLM Development</h4>
+              <p>AI-assisted coding, prompt engineering, rapid prototyping, and hybrid manual + AI development workflows.</p>
+              <div class="skill-tags">
+                <span>Prompt Engineering</span><span>Code Generation</span>
+                <span>Debugging</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="tech-stack-section reveal">
+          <h3 class="skills-title">Tech Stack</h3>
+          <div class="tech-grid">
+            <div class="tech-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+              <span>HTML5</span>
+            </div>
+            <div class="tech-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              <span>CSS3</span>
+            </div>
+            <div class="tech-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              <span>JavaScript</span>
+            </div>
+            <div class="tech-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M4 9h16"/><path d="M4 15h8"/><path d="M10 3v18"/></svg>
+              <span>PHP</span>
+            </div>
+            <div class="tech-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+              <span>MySQL</span>
+            </div>
+            <div class="tech-item">
+              <!-- Firebase flame icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+              <span>Firebase</span>
+            </div>
+            <div class="tech-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              <span>Kotlin</span>
+            </div>
+            <div class="tech-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              <span>Java</span>
+            </div>
+            <div class="tech-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M17 10v4M15 12h4M7 12h.01M12 12h.01"/></svg>
+              <span>RPG Maker MV</span>
+            </div>
+            <div class="tech-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M17 10v4M15 12h4M7 12h.01M12 12h.01"/></svg>
+              <span>RPG Maker MZ</span>
+            </div>
+            <div class="tech-item">
+              <!-- Figma-style icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"/><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"/></svg>
+              <span>Figma</span>
+            </div>
+            <div class="tech-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              <span>Android Studio</span>
+            </div>
+            <!-- C, C++, C#, Swift -->
+            <div class="tech-item">
+              <!-- Terminal / C language icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              <span>C</span>
+            </div>
+            <div class="tech-item">
+              <!-- Terminal + plus / C++ icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/><line x1="16" y1="15" x2="16" y2="23"/></svg>
+              <span>C++</span>
+            </div>
+            <div class="tech-item">
+              <!-- Hash / C# icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>
+              <span>C#</span>
+            </div>
+            <div class="tech-item">
+              <!-- Swift bird-like icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>
+              <span>Swift</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ PROJECTS ═══ -->
+    <section id="projects" class="section projects-section">
+      <div class="section-inner">
+        <div class="section-header reveal">
+          <h2 class="section-title">Projects</h2>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs reveal">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="web">Web</button>
+          <button class="filter-btn" data-filter="game">Game</button>
+          <button class="filter-btn" data-filter="mobile">Mobile</button>
+          <button class="filter-btn" data-filter="capstone">Capstone</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid" id="projectsGrid">
+
+          <!-- Marce-Libro (Capstone) -->
+          <article class="project-card reveal" data-category="capstone web">
+            <div class="project-badge capstone-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Capstone
+            </div>
+            <div class="project-icon-wrap project-icon-library">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <div class="project-content">
+              <h3>Marce-Libro</h3>
+              <p class="project-type">Library Reservation &amp; Book Management System</p>
+              <p class="project-desc">
+                A digital library platform for Marcelino College. Students can browse, search, reserve, and borrow
+                books. Administrators manage users, books, reservations, and borrowing records.
+              </p>
+              <div class="project-features">
+                <span>Student Portal</span>
+                <span>Admin Dashboard</span>
+                <span>Reservations</span>
+                <span>Borrow System</span>
+                <span>Notifications</span>
+              </div>
+              <div class="project-stack">
+                <span class="stack-tag">PHP</span>
+                <span class="stack-tag">MySQL</span>
+                <span class="stack-tag">JavaScript</span>
+                <span class="stack-tag">HTML/CSS</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Marketoon (E-Commerce) -->
+          <article class="project-card reveal" data-category="web">
+            <div class="project-icon-wrap project-icon-shop">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            </div>
+            <div class="project-content">
+              <h3>Marketoon</h3>
+              <p class="project-type">E-Commerce Marketplace Platform</p>
+              <p class="project-desc">
+                A marketplace platform with separate buyer and seller functionality, product management,
+                inventory, order tracking, and admin controls inspired by modern marketplace systems.
+              </p>
+              <div class="project-features">
+                <span>Seller Portal</span>
+                <span>Product Management</span>
+                <span>Order Tracking</span>
+                <span>Admin Panel</span>
+              </div>
+              <div class="project-stack">
+                <span class="stack-tag">PHP</span>
+                <span class="stack-tag">MySQL</span>
+                <span class="stack-tag">JavaScript</span>
+                <span class="stack-tag">HTML/CSS</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- RPG Game -->
+          <article class="project-card reveal" data-category="game">
+            <div class="project-icon-wrap project-icon-game">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M7 12h.01"/><path d="M17 10v4"/><path d="M15 12h4"/></svg>
+            </div>
+            <div class="project-content">
+              <h3>RPG Maker Game Project</h3>
+              <p class="project-type">Story-Driven RPG Game</p>
+              <p class="project-desc">
+                A story-driven RPG developed in RPG Maker MV/MZ, featuring custom quest systems, game UI, map design,
+                custom JavaScript plugins, and mobile touch controls for Android deployment.
+              </p>
+              <div class="project-features">
+                <span>Quest System</span>
+                <span>Custom Plugins</span>
+                <span>Mobile Controls</span>
+                <span>Android Deploy</span>
+              </div>
+              <div class="project-stack">
+                <span class="stack-tag">RPG Maker MZ</span>
+                <span class="stack-tag">JavaScript</span>
+                <span class="stack-tag">Android</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Reservation System -->
+          <article class="project-card reveal" data-category="web">
+            <div class="project-icon-wrap project-icon-calendar">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="project-content">
+              <h3>Reservation / Booking System</h3>
+              <p class="project-type">Web-Based Booking Platform</p>
+              <p class="project-desc">
+                A responsive reservation system featuring customer booking forms, date/time selection, admin
+                management, booking status tracking, notifications, and full database integration.
+              </p>
+              <div class="project-features">
+                <span>Booking Forms</span>
+                <span>Date Selection</span>
+                <span>Admin Panel</span>
+                <span>Notifications</span>
+              </div>
+              <div class="project-stack">
+                <span class="stack-tag">PHP</span>
+                <span class="stack-tag">MySQL</span>
+                <span class="stack-tag">JavaScript</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Android / Firebase App -->
+          <article class="project-card reveal" data-category="mobile">
+            <div class="project-icon-wrap project-icon-android">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <div class="project-content">
+              <h3>Android Firebase Application</h3>
+              <p class="project-type">Mobile App — Android</p>
+              <p class="project-desc">
+                A mobile application built with Kotlin and Firebase featuring authentication, real-time database
+                integration, Jetpack Compose UI, and modern Android development practices.
+              </p>
+              <div class="project-features">
+                <span>Firebase Auth</span>
+                <span>Realtime DB</span>
+                <span>Jetpack Compose</span>
+                <span>API Integration</span>
+              </div>
+              <div class="project-stack">
+                <span class="stack-tag">Kotlin</span>
+                <span class="stack-tag">Firebase</span>
+                <span class="stack-tag">Android Studio</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- iOS App -->
+          <article class="project-card reveal" data-category="mobile">
+            <div class="project-icon-wrap project-icon-ios">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75-.6 3.95-1.45 1.05-.74 1.55-1.66 1.55-2.74 0-1.12-.53-1.94-1.22-2.68-.68-.73-1.52-1.07-2.28-1.07s-1.48.25-2 .61c-.52-.36-1.24-.61-2-.61s-1.6.34-2.28 1.07c-.69.74-1.22 1.56-1.22 2.68 0 1.08.5 2 1.55 2.74C9.25 20.34 10.5 20.94 12 20.94z"/><path d="M12 6.06c.5-.5.94-1.13.94-2.06A2.94 2.94 0 0 0 10 7a2.94 2.94 0 0 0 2-.94z"/></svg>
+            </div>
+            <div class="project-content">
+              <h3>iOS Mobile Application</h3>
+              <p class="project-type">Mobile App — Apple / iOS</p>
+              <p class="project-desc">
+                An iOS application with a clean mobile UI, user-friendly navigation, application workflow
+                design, and mobile application programming for the Apple ecosystem.
+              </p>
+              <div class="project-features">
+                <span>iOS UI</span>
+                <span>App Workflow</span>
+                <span>Mobile UX</span>
+              </div>
+              <div class="project-stack">
+                <span class="stack-tag">iOS</span>
+                <span class="stack-tag">Mobile UI</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ CONTACT ═══ -->
+    <section id="contact" class="section contact-section">
+      <div class="section-inner">
+        <div class="section-header reveal">
+          <h2 class="section-title">Contact</h2>
+        </div>
+
+        <p class="contact-intro reveal">
+          Whether you need a <strong>website</strong>, <strong>mobile app</strong>, <strong>reservation system</strong>,
+          <strong>e-commerce platform</strong>, <strong>game</strong>, or <strong>UI/UX design</strong> —
+          I'm open to discussing new projects and opportunities.
+        </p>
+
+        <div class="contact-grid">
+
+          <!-- Contact Info -->
+          <div class="contact-info reveal">
+            <h3>Let's Build Something Together.</h3>
+
+            <div class="contact-links">
+              <a href="mailto:your@email.com" class="contact-link">
+                <div class="contact-link-icon">
+                  <!-- Mail icon -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div>
+                  <p class="contact-link-label">Email</p>
+                  <p class="contact-link-value">your@email.com</p>
+                </div>
+              </a>
+
+              <a href="https://github.com/yourgithub" target="_blank" rel="noopener" class="contact-link">
+                <div class="contact-link-icon">
+                  <!-- GitHub SVG -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </div>
+                <div>
+                  <p class="contact-link-label">GitHub</p>
+                  <p class="contact-link-value">github.com/yourgithub</p>
+                </div>
+              </a>
+
+              <a href="https://linkedin.com/in/yourlinkedin" target="_blank" rel="noopener" class="contact-link">
+                <div class="contact-link-icon">
+                  <!-- LinkedIn SVG -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                </div>
+                <div>
+                  <p class="contact-link-label">LinkedIn</p>
+                  <p class="contact-link-value">linkedin.com/in/yourlinkedin</p>
+                </div>
+              </a>
+
+              <a href="https://facebook.com/yourfacebook" target="_blank" rel="noopener" class="contact-link">
+                <div class="contact-link-icon">
+                  <!-- Facebook SVG -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </div>
+                <div>
+                  <p class="contact-link-label">Facebook</p>
+                  <p class="contact-link-value">facebook.com/yourfacebook</p>
+                </div>
+              </a>
+            </div>
+
+            <div class="availability-card">
+              <span class="status-dot"></span>
+              <p><strong>Currently available</strong> for freelance projects, internships, and collaborations.</p>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-wrap reveal">
+            <form id="contactForm" class="contact-form" novalidate>
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="john@email.com" required />
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Project Inquiry" required />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full">
+                <!-- Send icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Send Message
+              </button>
+              <p class="form-note" id="formNote"></p>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-name">&lt;Glenn Beriño D. /&gt;</p>
+      <p class="footer-copy">© <span id="year"></span> Glenn Beriño D. — Built with HTML, CSS &amp; JavaScript</p>
+      <div class="footer-socials">
+        <a href="mailto:your@email.com" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+        <a href="https://github.com" aria-label="GitHub" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+        <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://facebook.com" aria-label="Facebook" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/theme.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/navigation.js"></script>
+</body>
+</html>
